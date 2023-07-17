@@ -29,42 +29,18 @@ docs = []
 # way to access database-specific methods when you need extra control.
 expose-drivers = []
 
-all = [
-  "chrono",
-  "json",
-  "mssql",
-  "mysql",
-  "pooled",
-  "postgresql",
-  "serde-support",
-  "sqlite",
-  "uuid",
-  "bigdecimal",
-]
+all = []
 
-vendored-openssl = [
-  "postgres-native-tls/vendored-openssl",
-  "mysql_async/vendored-openssl",
-]
+vendored-openssl = []
 
-postgresql = [
-  "native-tls",
-  "tokio-postgres",
-  "postgres-types",
-  "postgres-native-tls",
-  "bytes",
-  "tokio",
-  "bit-vec",
-  "lru-cache",
-  "byteorder",
-]
+postgresql = []
 
 json = ["serde_json", "base64"]
-mssql = ["tiberius", "uuid", "chrono", "tokio-util", "tokio/time", "tokio/net", "either"]
-mysql = ["mysql_async", "tokio/time", "lru-cache"]
-pooled = ["mobc"]
+mssql = []
+mysql = []
+pooled = []
 serde-support = ["serde", "chrono/serde"]
-sqlite = ["rusqlite", "tokio/sync"]
+sqlite = []
 bigdecimal = ["bigdecimal_"]
 fmt-sql = ["sqlformat"]
 
@@ -86,7 +62,6 @@ base64 = { version = "0.12.3", optional = true }
 chrono = { version = "0.4", optional = true, default-features = false }
 lru-cache = { version = "0.1", optional = true }
 serde_json = { version = "1.0.48", optional = true, features = ["float_roundtrip"] }
-native-tls = { version = "0.2", optional = true }
 bit-vec = { version = "0.6.1", optional = true }
 bytes = { version = "1.0", optional = true }
 mobc = { version = "0.8", optional = true }
@@ -102,7 +77,7 @@ serde = { version = "1.0", features = ["derive"] }
 test-macros = { path = "test-macros" }
 test-setup = { path = "test-setup" }
 uuid = { version = "1", features = ["v4"] }
-tokio = { version = "1.0", features = ["rt-multi-thread", "macros", "time"] }
+tokio = { version = "1.0", features = ["rt", "macros", "time"] }
 
 [dependencies.byteorder]
 default-features = false
@@ -128,7 +103,7 @@ features = ["sql-browser-tokio", "chrono", "bigdecimal"]
 version = "0.11.2"
 optional = true
 default-features = false
-features = ["sql-browser-tokio", "vendored-openssl", "chrono", "bigdecimal", "tds73", "winauth"]
+features = ["sql-browser-tokio", "chrono", "bigdecimal", "tds73", "winauth"]
 
 [dependencies.bigdecimal_]
 version = "0.3"
@@ -158,7 +133,7 @@ optional = true
 
 [dependencies.tokio]
 version = "1.0"
-features = ["rt-multi-thread", "macros", "sync"]
+features = ["rt", "macros", "sync"]
 optional = true
 
 [dependencies.tokio-util]

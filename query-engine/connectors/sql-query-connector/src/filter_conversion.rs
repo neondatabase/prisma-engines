@@ -520,10 +520,7 @@ fn convert_json_filter(
         target_type,
     } = json_condition;
     let (expr_json, expr_string): (Expression, Expression) = match path {
-        Some(JsonFilterPath::String(path)) => (
-            json_extract(comparable.clone(), JsonPath::string(path.clone()), false).into(),
-            json_extract(comparable, JsonPath::string(path), true).into(),
-        ),
+        Some(JsonFilterPath::String(path)) => todo!(),
         Some(JsonFilterPath::Array(path)) => (
             json_extract(comparable.clone(), JsonPath::array(path.clone()), false).into(),
             json_extract(comparable, JsonPath::array(path), true).into(),

@@ -106,9 +106,6 @@
 
 #![cfg_attr(feature = "docs", feature(doc_cfg))]
 
-#[cfg(not(any(feature = "sqlite", feature = "postgresql", feature = "mysql", feature = "mssql")))]
-compile_error!("one of 'sqlite', 'postgresql', 'mysql' or 'mssql' features must be enabled");
-
 #[macro_use]
 mod macros;
 

@@ -146,9 +146,7 @@ impl Quaint {
             }
             #[cfg(feature = "postgresql")]
             s if s.starts_with("postgres") || s.starts_with("postgresql") => {
-                let url = connector::PostgresUrl::new(url::Url::parse(s)?)?;
-                let psql = connector::PostgreSql::new(url).await?;
-                Arc::new(psql) as Arc<dyn Queryable>
+                todo!()
             }
             #[cfg(feature = "mssql")]
             s if s.starts_with("jdbc:sqlserver") | s.starts_with("sqlserver") => {

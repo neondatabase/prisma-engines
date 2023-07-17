@@ -4,7 +4,6 @@
 mod column_metadata;
 mod context;
 mod cursor_condition;
-mod database;
 mod error;
 mod filter_conversion;
 mod join_utils;
@@ -24,7 +23,6 @@ use quaint::prelude::Queryable;
 
 #[cfg(feature = "js-drivers")]
 pub use database::js::register_driver;
-pub use database::{FromSource, Mssql, Mysql, PostgreSql, Sqlite};
 pub use error::SqlError;
 
 type Result<T> = std::result::Result<T, error::SqlError>;

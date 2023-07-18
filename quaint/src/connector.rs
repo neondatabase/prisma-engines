@@ -22,15 +22,15 @@ mod type_identifier;
 pub(crate) mod mssql;
 #[cfg(feature = "mysql")]
 pub(crate) mod mysql;
-#[cfg(feature = "postgresql")]
-pub(crate) mod postgres;
+// #[cfg(feature = "postgresql")]
+// pub(crate) mod postgres;
 #[cfg(feature = "sqlite")]
 pub(crate) mod sqlite;
 
 #[cfg(feature = "mysql")]
 pub use self::mysql::*;
-#[cfg(feature = "postgresql")]
-pub use self::postgres::*;
+// #[cfg(feature = "postgresql")]
+// pub use self::postgres::*;
 pub use self::result_set::*;
 pub use connection_info::*;
 #[cfg(feature = "mssql")]

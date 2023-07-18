@@ -25,15 +25,5 @@ where
     EF: FnOnce() -> Error,
     E: Into<Error>,
 {
-    match duration {
-        Some(duration) => match tokio::time::timeout(duration, f).await {
-            Ok(Ok(result)) => Ok(result),
-            Ok(Err(err)) => Err(err.into()),
-            Err(_) => Err(e_f()),
-        },
-        None => match f.await {
-            Ok(result) => Ok(result),
-            Err(err) => Err(err.into()),
-        },
-    }
+    todo!()
 }

@@ -13,19 +13,20 @@ pub(super) struct Context<'a> {
 
 impl<'a> Context<'a> {
     pub(crate) fn new(connection_info: &'a ConnectionInfo, trace_id: Option<&'a str>) -> Self {
-        let (max_rows, default_batch_size) = match connection_info {
-            ConnectionInfo::Postgres(_) => (None, 32766),
-            // See https://stackoverflow.com/a/11131824/788562
-            ConnectionInfo::Mysql(_) => (None, 65535),
-            ConnectionInfo::Mssql(_) => (Some(1000), 2099),
-            ConnectionInfo::Sqlite { .. } | ConnectionInfo::InMemorySqlite { .. } => (Some(999), 999),
-        };
-        Context {
-            connection_info,
-            trace_id,
-            max_rows,
-            max_bind_values: get_batch_size(default_batch_size),
-        }
+        todo!()
+        // let (max_rows, default_batch_size) = match connection_info {
+        //     ConnectionInfo::Postgres(_) => (None, 32766),
+        //     // See https://stackoverflow.com/a/11131824/788562
+        //     ConnectionInfo::Mysql(_) => (None, 65535),
+        //     ConnectionInfo::Mssql(_) => (Some(1000), 2099),
+        //     ConnectionInfo::Sqlite { .. } | ConnectionInfo::InMemorySqlite { .. } => (Some(999), 999),
+        // };
+        // Context {
+        //     connection_info,
+        //     trace_id,
+        //     max_rows,
+        //     max_bind_values: get_batch_size(default_batch_size),
+        // }
     }
 
     pub(crate) fn schema_name(&self) -> &str {

@@ -6,8 +6,8 @@ use url::Url;
 use crate::connector::MssqlUrl;
 #[cfg(feature = "mysql")]
 use crate::connector::MysqlUrl;
-#[cfg(feature = "postgresql")]
-use crate::connector::PostgresUrl;
+// #[cfg(feature = "postgresql")]
+// use crate::connector::PostgresUrl;
 #[cfg(feature = "sqlite")]
 use crate::connector::SqliteParams;
 #[cfg(feature = "sqlite")]
@@ -19,7 +19,7 @@ pub enum ConnectionInfo {
     /// A PostgreSQL connection URL.
     #[cfg(feature = "postgresql")]
     #[cfg_attr(feature = "docs", doc(cfg(feature = "postgresql")))]
-    Postgres(PostgresUrl),
+    Postgres(()),
     /// A MySQL connection URL.
     #[cfg(feature = "mysql")]
     #[cfg_attr(feature = "docs", doc(cfg(feature = "mysql")))]
@@ -92,7 +92,7 @@ impl ConnectionInfo {
                 })
             }
             #[cfg(feature = "postgresql")]
-            SqlFamily::Postgres => Ok(ConnectionInfo::Postgres(PostgresUrl::new(url)?)),
+            SqlFamily::Postgres => Ok(ConnectionInfo::Postgres(())),
             #[allow(unreachable_patterns)]
             _ => unreachable!(),
         }
@@ -102,7 +102,7 @@ impl ConnectionInfo {
     pub fn dbname(&self) -> Option<&str> {
         match self {
             #[cfg(feature = "postgresql")]
-            ConnectionInfo::Postgres(url) => Some(url.dbname()),
+            ConnectionInfo::Postgres(url) => todo!(),
             #[cfg(feature = "mysql")]
             ConnectionInfo::Mysql(url) => Some(url.dbname()),
             #[cfg(feature = "mssql")]
@@ -120,7 +120,7 @@ impl ConnectionInfo {
     pub fn schema_name(&self) -> &str {
         match self {
             #[cfg(feature = "postgresql")]
-            ConnectionInfo::Postgres(url) => url.schema(),
+            ConnectionInfo::Postgres(url) => todo!(),
             #[cfg(feature = "mysql")]
             ConnectionInfo::Mysql(url) => url.dbname(),
             #[cfg(feature = "mssql")]
@@ -136,7 +136,7 @@ impl ConnectionInfo {
     pub fn host(&self) -> &str {
         match self {
             #[cfg(feature = "postgresql")]
-            ConnectionInfo::Postgres(url) => url.host(),
+            ConnectionInfo::Postgres(url) => todo!(),
             #[cfg(feature = "mysql")]
             ConnectionInfo::Mysql(url) => url.host(),
             #[cfg(feature = "mssql")]
@@ -150,7 +150,7 @@ impl ConnectionInfo {
     pub fn username(&self) -> Option<Cow<str>> {
         match self {
             #[cfg(feature = "postgresql")]
-            ConnectionInfo::Postgres(url) => Some(url.username()),
+            ConnectionInfo::Postgres(url) => todo!(),
             #[cfg(feature = "mysql")]
             ConnectionInfo::Mysql(url) => Some(url.username()),
             #[cfg(feature = "mssql")]
@@ -173,6 +173,7 @@ impl ConnectionInfo {
             ConnectionInfo::Sqlite { file_path, .. } => Some(file_path),
             #[cfg(feature = "sqlite")]
             ConnectionInfo::InMemorySqlite { .. } => None,
+            _ => todo!(),
         }
     }
 
@@ -187,6 +188,7 @@ impl ConnectionInfo {
             ConnectionInfo::Mssql(_) => SqlFamily::Mssql,
             #[cfg(feature = "sqlite")]
             ConnectionInfo::Sqlite { .. } | ConnectionInfo::InMemorySqlite { .. } => SqlFamily::Sqlite,
+            _ => todo!(),
         }
     }
 
@@ -194,7 +196,7 @@ impl ConnectionInfo {
     pub fn port(&self) -> Option<u16> {
         match self {
             #[cfg(feature = "postgresql")]
-            ConnectionInfo::Postgres(url) => Some(url.port()),
+            ConnectionInfo::Postgres(url) => todo!(),
             #[cfg(feature = "mysql")]
             ConnectionInfo::Mysql(url) => Some(url.port()),
             #[cfg(feature = "mssql")]
@@ -209,7 +211,7 @@ impl ConnectionInfo {
         #[allow(unreachable_patterns)]
         match self {
             #[cfg(feature = "postgresql")]
-            ConnectionInfo::Postgres(url) => url.pg_bouncer(),
+            ConnectionInfo::Postgres(url) => todo!(),
             _ => false,
         }
     }
@@ -219,7 +221,7 @@ impl ConnectionInfo {
     pub fn database_location(&self) -> String {
         match self {
             #[cfg(feature = "postgresql")]
-            ConnectionInfo::Postgres(url) => format!("{}:{}", url.host(), url.port()),
+            ConnectionInfo::Postgres(url) => todo!(),
             #[cfg(feature = "mysql")]
             ConnectionInfo::Mysql(url) => format!("{}:{}", url.host(), url.port()),
             #[cfg(feature = "mssql")]
@@ -228,6 +230,7 @@ impl ConnectionInfo {
             ConnectionInfo::Sqlite { file_path, .. } => file_path.clone(),
             #[cfg(feature = "sqlite")]
             ConnectionInfo::InMemorySqlite { .. } => "in-memory".into(),
+            _ => todo!(),
         }
     }
 }

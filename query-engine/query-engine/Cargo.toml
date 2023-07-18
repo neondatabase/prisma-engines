@@ -4,7 +4,7 @@ name = "query-engine"
 version = "0.1.0"
 
 [features]
-default = ["sql", "mongodb"]
+default = ["sql"]
 mongodb = ["mongodb-connector"]
 sql = ["sql-connector"]
 vendored-openssl = ["sql-connector/vendored-openssl"]

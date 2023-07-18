@@ -1,18 +1,18 @@
 use crate::CoreError;
 use connector::Transaction;
 use std::fmt::Display;
-use tokio::time::{Duration, Instant};
+use std::time::{Duration, Instant};
 
-mod actor_manager;
-mod actors;
+// mod actor_manager;
+// mod actors;
 mod error;
-mod messages;
+// mod messages;
 
 pub use error::*;
 
-pub(crate) use actor_manager::*;
-pub(crate) use actors::*;
-pub(crate) use messages::*;
+// pub(crate) use actor_manager::*;
+// pub(crate) use actors::*;
+// pub(crate) use messages::*;
 
 /// How Interactive Transactions work
 /// The Interactive Transactions (iTx) follow an actor model design. Where each iTx is created in its own process.
@@ -44,7 +44,7 @@ const MINIMUM_TX_ID_LENGTH: usize = 24;
 
 impl Default for TxId {
     fn default() -> Self {
-        Self(cuid::cuid().unwrap())
+        Self(String::new())
     }
 }
 

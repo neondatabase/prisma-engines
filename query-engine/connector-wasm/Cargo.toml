@@ -12,3 +12,4 @@ sql-query-connector = { path = "../connectors/sql-query-connector" }
 schema = { path = "../schema" }
 psl.workspace = true
 request-handlers = { path = "../request-handlers" }
+query-core = { path = "../core" }

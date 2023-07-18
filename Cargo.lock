@@ -436,6 +436,7 @@ name = "connector-wasm"
 version = "0.1.0"
 dependencies = [
  "psl",
+ "query-core",
  "request-handlers",
  "schema",
  "sql-query-connector",

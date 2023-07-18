@@ -7,9 +7,6 @@ version = "0.1.0"
 vendored-openssl = ["quaint/vendored-openssl"]
 js-drivers = []
 
-[lib]
-crate-type = ["cdylib"]
-
 [dependencies]
 psl.workspace = true
 anyhow = "1.0"

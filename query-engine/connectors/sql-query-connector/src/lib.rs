@@ -4,6 +4,7 @@
 mod column_metadata;
 mod context;
 mod cursor_condition;
+pub mod database;
 mod error;
 mod filter_conversion;
 mod join_utils;

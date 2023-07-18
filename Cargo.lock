@@ -432,6 +432,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "510ca239cf13b7f8d16a2b48f263de7b4f8c566f0af58d901031473c76afb1e3"
 
 [[package]]
+name = "connector-wasm"
+version = "0.1.0"
+dependencies = [
+ "psl",
+ "query-core",
+ "request-handlers",
+ "schema",
+ "sql-query-connector",
+ "wasm-bindgen",
+ "wasm-bindgen-futures",
+]
+
+[[package]]
 name = "console"
 version = "0.15.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2611,12 +2624,10 @@ dependencies = [
  "prisma-models",
  "psl",
  "query-connector",
- "query-engine-metrics",
  "schema",
  "serde",
  "serde_json",
  "thiserror",
- "tokio",
  "tracing",
  "tracing-futures",
  "tracing-opentelemetry",

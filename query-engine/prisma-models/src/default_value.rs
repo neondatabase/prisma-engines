@@ -275,7 +275,8 @@ impl ValueGeneratorFn {
 
     #[cfg(feature = "default_generators")]
     fn generate_cuid() -> PrismaValue {
-        PrismaValue::String(cuid::cuid().unwrap())
+        // force UUID as CUID not supported
+        PrismaValue::Uuid(uuid::Uuid::new_v4())
     }
 
     #[cfg(feature = "default_generators")]

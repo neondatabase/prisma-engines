@@ -35,10 +35,10 @@ impl ConnectorError {
                 }))
             }
             ErrorKind::InvalidDatabaseUrl { details, url: _ } => {
-                let details = user_facing_errors::quaint::invalid_connection_string_description(details);
+                // let details = user_facing_errors::quaint::invalid_connection_string_description(details);
 
                 Some(KnownError::new(user_facing_errors::common::InvalidConnectionString {
-                    details,
+                    details: "unknown".to_string(),
                 }))
             }
             ErrorKind::ForeignKeyConstraintViolation { constraint } => {

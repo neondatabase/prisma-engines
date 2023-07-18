@@ -13,7 +13,7 @@ itertools = "0.10"
 graphql-parser = { git = "https://github.com/prisma/graphql-parser" }
 serde.workspace = true
 serde_json.workspace = true
-futures = "0.3"
+futures = { version = "0.3", no-default-features = true }
 indexmap = { version = "1.7", features = ["serde-1"] }
 bigdecimal = "0.3"
 thiserror = "1"
@@ -24,7 +24,7 @@ quaint.workspace = true
 once_cell = "1.15"
 
 mongodb-query-connector = { path = "../connectors/mongodb-query-connector", optional = true }
-sql-query-connector = { path = "../connectors/sql-query-connector", optional = true }
+sql-query-connector = { path = "../connectors/sql-query-connector" }
 
 [dev-dependencies]
 insta = "1.7.1"
@@ -32,9 +32,6 @@ schema = { path = "../schema" }
 codspeed-criterion-compat = "1.1.0"
 
 [features]
-default = ["sql"]
-mongodb = ["mongodb-query-connector"]
-sql = ["sql-query-connector"]
 
 [[bench]]
 name = "query_planning_bench"

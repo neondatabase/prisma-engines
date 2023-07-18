@@ -2,21 +2,19 @@ use super::execute_operation::{execute_many_operations, execute_many_self_contai
 use super::request_context;
 use crate::{
     protocol::EngineProtocol, BatchDocumentTransaction, CoreError, Operation, QueryExecutor, ResponseData,
-    TransactionActorManager, TransactionError, TransactionManager, TransactionOptions, TxId,
+     TransactionError, TransactionManager, TransactionOptions, TxId,
 };
 
 use async_trait::async_trait;
 use connector::Connector;
 use schema::QuerySchemaRef;
-use tokio::time::{self, Duration};
+use std::time::{self, Duration};
 use tracing_futures::Instrument;
 
 /// Central query executor and main entry point into the query core.
 pub struct InterpretingExecutor<C> {
     /// The loaded connector
     connector: C,
-
-    itx_manager: TransactionActorManager,
 
     /// Flag that forces individual operations to run in a transaction.
     /// Does _not_ force batches to use transactions.
@@ -31,7 +29,6 @@ where
         InterpretingExecutor {
             connector,
             force_transactions,
-            itx_manager: TransactionActorManager::new(),
         }
     }
 }
@@ -52,7 +49,7 @@ where
     ) -> crate::Result<ResponseData> {
         // If a Tx id is provided, execute on that one. Else execute normally as a single operation.
         if let Some(tx_id) = tx_id {
-            self.itx_manager.execute(&tx_id, operation, trace_id).await
+            unimplemented!()
         } else {
             request_context::with_request_context(engine_protocol, async move {
                 execute_single_self_contained(
@@ -90,13 +87,7 @@ where
         engine_protocol: EngineProtocol,
     ) -> crate::Result<Vec<crate::Result<ResponseData>>> {
         if let Some(tx_id) = tx_id {
-            let batch_isolation_level = transaction.and_then(|t| t.isolation_level());
-            if batch_isolation_level.is_some() {
-                return Err(CoreError::UnsupportedFeatureError(
-                    "Can not set batch isolation level within interactive transaction".into(),
-                ));
-            }
-            self.itx_manager.batch_execute(&tx_id, operations, trace_id).await
+            unimplemented!()
         } else if let Some(transaction) = transaction {
             let conn_span = info_span!(
                 "prisma:engine:connection",
@@ -151,50 +142,14 @@ where
         engine_protocol: EngineProtocol,
         tx_opts: TransactionOptions,
     ) -> crate::Result<TxId> {
-        super::with_request_context(engine_protocol, async move {
-            let isolation_level = tx_opts.isolation_level;
-            let valid_for_millis = tx_opts.valid_for_millis;
-            let id = tx_opts.new_tx_id.unwrap_or_default();
-
-            trace!("[{}] Starting...", id);
-            let conn_span = info_span!(
-                "prisma:engine:connection",
-                user_facing = true,
-                "db.type" = self.connector.name()
-            );
-            let conn = time::timeout(
-                Duration::from_millis(tx_opts.max_acquisition_millis),
-                self.connector.get_connection(),
-            )
-            .instrument(conn_span)
-            .await;
-
-            let conn = conn.map_err(|_| TransactionError::AcquisitionTimeout)??;
-
-            self.itx_manager
-                .create_tx(
-                    query_schema.clone(),
-                    id.clone(),
-                    conn,
-                    isolation_level,
-                    Duration::from_millis(valid_for_millis),
-                    engine_protocol,
-                )
-                .await?;
-
-            debug!("[{}] Started.", id);
-            Ok(id)
-        })
-        .await
+        unimplemented!()
     }
 
     async fn commit_tx(&self, tx_id: TxId) -> crate::Result<()> {
-        trace!("[{}] Committing.", tx_id);
-        self.itx_manager.commit_tx(&tx_id).await
+        unimplemented!()
     }
 
     async fn rollback_tx(&self, tx_id: TxId) -> crate::Result<()> {
-        trace!("[{}] Rolling back.", tx_id);
-        self.itx_manager.rollback_tx(&tx_id).await
+        unimplemented!()
     }
 }

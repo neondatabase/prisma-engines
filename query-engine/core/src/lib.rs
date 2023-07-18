@@ -5,23 +5,24 @@ extern crate tracing;
 
 pub mod constants;
 pub mod executor;
+pub mod interactive_transactions;
 pub mod protocol;
 pub mod query_document;
 pub mod query_graph_builder;
 pub mod response_ir;
-pub mod telemetry;
+// pub mod telemetry;
 
 pub use self::{
     error::{CoreError, FieldConversionError},
     executor::{QueryExecutor, TransactionOptions},
     interactive_transactions::{ExtendedTransactionUserFacingError, TransactionError, TxId},
     query_document::*,
-    telemetry::*,
+    // telemetry::*,
 };
 pub use connector::{error::ConnectorError, Connector};
 
 mod error;
-mod interactive_transactions;
+// mod interactive_transactions;
 mod interpreter;
 mod query_ast;
 mod query_graph;

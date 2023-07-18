@@ -19,6 +19,7 @@ mod value;
 mod value_ext;
 
 use self::{column_metadata::*, context::Context, filter_conversion::*, query_ext::QueryExt, row::*};
+use psl::SourceFile;
 use quaint::prelude::Queryable;
 
 #[cfg(feature = "js-drivers")]

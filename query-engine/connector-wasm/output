@@ -1,0 +1,1348 @@
+warning: /Users/skyzh/Work/prisma-engines/query-engine/request-handlers/Cargo.toml: unused manifest key: dependencies.futures.no-default-features
+   Compiling futures-util v0.3.24
+   Compiling tokio v1.25.0
+   Compiling socket2 v0.4.7
+error[E0583]: file not found for module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/lib.rs:124:1
+    |
+124 | mod sys;
+    | ^^^^^^^^
+    |
+    = help: to create the module `sys`, create file "/Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/sys.rs" or "/Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/sys/mod.rs"
+
+error: Socket2 doesn't support the compile target
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/lib.rs:127:1
+    |
+127 | compile_error!("Socket2 doesn't support the compile target");
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: Only features sync,macros,io-util,rt,time are supported on wasm.
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.25.0/src/lib.rs:462:1
+    |
+462 | compile_error!("Only features sync,macros,io-util,rt,time are supported on wasm.");
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0432]: unresolved imports `crate::sys::sa_family_t`, `crate::sys::sockaddr`, `crate::sys::sockaddr_in`, `crate::sys::sockaddr_in6`, `crate::sys::sockaddr_storage`, `crate::sys::socklen_t`, `crate::sys::AF_INET`, `crate::sys::AF_INET6`
+ --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/sockaddr.rs:6:5
+  |
+6 |     sa_family_t, sockaddr, sockaddr_in, sockaddr_in6, sockaddr_storage, socklen_t, AF_INET,
+  |     ^^^^^^^^^^^  ^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^  ^^^^^^^^^  ^^^^^^^ no `AF_INET` in `sys`
+  |     |            |         |            |             |                 |
+  |     |            |         |            |             |                 no `socklen_t` in `sys`
+  |     |            |         |            |             no `sockaddr_storage` in `sys`
+  |     |            |         |            no `sockaddr_in6` in `sys`
+  |     |            |         no `sockaddr_in` in `sys`
+  |     |            no `sockaddr` in `sys`
+  |     no `sa_family_t` in `sys`
+7 |     AF_INET6,
+  |     ^^^^^^^^ no `AF_INET6` in `sys`
+  |
+  = help: consider importing this module instead:
+          crate::sockaddr
+
+error[E0432]: unresolved imports `crate::sys::c_int`, `crate::sys::getsockopt`, `crate::sys::setsockopt`, `crate::sys::Bool`
+  --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:21:24
+   |
+21 | use crate::sys::{self, c_int, getsockopt, setsockopt, Bool};
+   |                        ^^^^^  ^^^^^^^^^^  ^^^^^^^^^^  ^^^^ no `Bool` in `sys`
+   |                        |      |           |
+   |                        |      |           no `setsockopt` in `sys`
+   |                        |      no `getsockopt` in `sys`
+   |                        no `c_int` in `sys`
+   |
+   = help: consider importing one of these items instead:
+           std::ffi::c_int
+           std::os::raw::c_int
+           core::ffi::c_int
+
+error[E0432]: unresolved import `sys::c_int`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/lib.rs:129:5
+    |
+129 | use sys::c_int;
+    |     ^^^^^^^^^^ no `c_int` in `sys`
+    |
+help: consider importing one of these items instead
+    |
+129 | use core::ffi::c_int;
+    |     ~~~~~~~~~~~~~~~~
+129 | use std::ffi::c_int;
+    |     ~~~~~~~~~~~~~~~
+129 | use std::os::raw::c_int;
+    |     ~~~~~~~~~~~~~~~~~~~
+
+error[E0433]: failed to resolve: could not find `MaybeUninitSlice` in `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/lib.rs:307:31
+    |
+307 |         MaybeUninitSlice(sys::MaybeUninitSlice::new(buf))
+    |                               ^^^^^^^^^^^^^^^^ could not find `MaybeUninitSlice` in `sys`
+
+error[E0425]: cannot find function `from_in_addr` in module `crate::sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/sockaddr.rs:170:34
+    |
+170 |             let ip = crate::sys::from_in_addr(addr.sin_addr);
+    |                                  ^^^^^^^^^^^^ not found in `crate::sys`
+
+error[E0425]: cannot find function `from_in6_addr` in module `crate::sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/sockaddr.rs:177:34
+    |
+177 |             let ip = crate::sys::from_in6_addr(addr.sin6_addr);
+    |                                  ^^^^^^^^^^^^^ not found in `crate::sys`
+
+error[E0425]: cannot find function `to_in_addr` in module `crate::sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/sockaddr.rs:228:35
+    |
+228 |             sin_addr: crate::sys::to_in_addr(addr.ip()),
+    |                                   ^^^^^^^^^^ not found in `crate::sys`
+
+error[E0425]: cannot find function `to_in6_addr` in module `crate::sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/sockaddr.rs:263:36
+    |
+263 |             sin6_addr: crate::sys::to_in6_addr(addr.ip()),
+    |                                    ^^^^^^^^^^^ not found in `crate::sys`
+
+error[E0412]: cannot find type `Socket` in module `sys`
+  --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:86:38
+   |
+86 |     pub(crate) fn from_raw(raw: sys::Socket) -> Socket {
+   |                                      ^^^^^^ not found in `sys`
+   |
+help: consider importing this struct
+   |
+9  + use crate::Socket;
+   |
+help: if you import `Socket`, refer to it directly
+   |
+86 -     pub(crate) fn from_raw(raw: sys::Socket) -> Socket {
+86 +     pub(crate) fn from_raw(raw: Socket) -> Socket {
+   |
+
+error[E0425]: cannot find function `socket_from_raw` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:104:22
+    |
+104 |                 sys::socket_from_raw(raw)
+    |                      ^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0412]: cannot find type `Socket` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:109:41
+    |
+109 |     pub(crate) fn as_raw(&self) -> sys::Socket {
+    |                                         ^^^^^^ not found in `sys`
+    |
+help: consider importing this struct
+    |
+9   + use crate::Socket;
+    |
+help: if you import `Socket`, refer to it directly
+    |
+109 -     pub(crate) fn as_raw(&self) -> sys::Socket {
+109 +     pub(crate) fn as_raw(&self) -> Socket {
+    |
+
+error[E0425]: cannot find function `socket_as_raw` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:110:14
+    |
+110 |         sys::socket_as_raw(&self.inner)
+    |              ^^^^^^^^^^^^^ not found in `sys`
+
+error[E0412]: cannot find type `Socket` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:113:42
+    |
+113 |     pub(crate) fn into_raw(self) -> sys::Socket {
+    |                                          ^^^^^^ not found in `sys`
+    |
+help: consider importing this struct
+    |
+9   + use crate::Socket;
+    |
+help: if you import `Socket`, refer to it directly
+    |
+113 -     pub(crate) fn into_raw(self) -> sys::Socket {
+113 +     pub(crate) fn into_raw(self) -> Socket {
+    |
+
+error[E0425]: cannot find function `socket_into_raw` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:114:14
+    |
+114 |         sys::socket_into_raw(self.inner)
+    |              ^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `socket` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:138:14
+    |
+138 |         sys::socket(domain.0, ty.0, protocol).map(Socket::from_raw)
+    |              ^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `bind` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:181:14
+    |
+181 |         sys::bind(self.as_raw(), address)
+    |              ^^^^ not found in `sys`
+
+error[E0425]: cannot find function `connect` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:199:14
+    |
+199 |         sys::connect(self.as_raw(), address)
+    |              ^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `poll_connect` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:234:14
+    |
+234 |         sys::poll_connect(self, timeout)
+    |              ^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `listen` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:246:14
+    |
+246 |         sys::listen(self.as_raw(), backlog)
+    |              ^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `accept` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:297:14
+    |
+297 |         sys::accept(self.as_raw()).map(|(inner, addr)| (Socket::from_raw(inner), addr))
+    |              ^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `getsockname` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:309:14
+    |
+309 |         sys::getsockname(self.as_raw())
+    |              ^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `getpeername` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:320:14
+    |
+320 |         sys::getpeername(self.as_raw())
+    |              ^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SOL_SOCKET` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:326:58
+    |
+326 |         unsafe { getsockopt::<c_int>(self.as_raw(), sys::SOL_SOCKET, sys::SO_TYPE).map(Type) }
+    |                                                          ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SO_TYPE` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:326:75
+    |
+326 |         unsafe { getsockopt::<c_int>(self.as_raw(), sys::SOL_SOCKET, sys::SO_TYPE).map(Type) }
+    |                                                                           ^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `try_clone` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:343:14
+    |
+343 |         sys::try_clone(self.as_raw()).map(Socket::from_raw)
+    |              ^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `set_nonblocking` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:355:14
+    |
+355 |         sys::set_nonblocking(self.as_raw(), nonblocking)
+    |              ^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `shutdown` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:363:14
+    |
+363 |         sys::shutdown(self.as_raw(), how)
+    |              ^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `MSG_OOB` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:398:40
+    |
+398 |         self.recv_with_flags(buf, sys::MSG_OOB)
+    |                                        ^^^^^^^ not found in `sys`
+
+error[E0412]: cannot find type `c_int` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:408:21
+    |
+408 |         flags: sys::c_int,
+    |                     ^^^^^ not found in `sys`
+    |
+help: consider importing one of these items
+    |
+9   + use core::ffi::c_int;
+    |
+9   + use std::ffi::c_int;
+    |
+9   + use std::os::raw::c_int;
+    |
+help: if you import `c_int`, refer to it directly
+    |
+408 -         flags: sys::c_int,
+408 +         flags: c_int,
+    |
+
+error[E0425]: cannot find function `recv` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:410:14
+    |
+410 |         sys::recv(self.as_raw(), buf, flags)
+    |              ^^^^ not found in `sys`
+
+error[E0425]: cannot find function `recv_vectored` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:465:14
+    |
+465 |         sys::recv_vectored(self.as_raw(), bufs, flags)
+    |              ^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `MSG_PEEK` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:482:40
+    |
+482 |         self.recv_with_flags(buf, sys::MSG_PEEK)
+    |                                        ^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `recv_from` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:507:14
+    |
+507 |         sys::recv_from(self.as_raw(), buf, flags)
+    |              ^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `recv_from_vectored` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:549:14
+    |
+549 |         sys::recv_from_vectored(self.as_raw(), bufs, flags)
+    |              ^^^^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `MSG_PEEK` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:567:45
+    |
+567 |         self.recv_from_with_flags(buf, sys::MSG_PEEK)
+    |                                             ^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `send` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:585:14
+    |
+585 |         sys::send(self.as_raw(), buf, flags)
+    |              ^^^^ not found in `sys`
+
+error[E0425]: cannot find function `send_vectored` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:606:14
+    |
+606 |         sys::send_vectored(self.as_raw(), bufs, flags)
+    |              ^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `MSG_OOB` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:617:40
+    |
+617 |         self.send_with_flags(buf, sys::MSG_OOB)
+    |                                        ^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `send_to` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:638:14
+    |
+638 |         sys::send_to(self.as_raw(), buf, addr, flags)
+    |              ^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `send_to_vectored` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:661:14
+    |
+661 |         sys::send_to_vectored(self.as_raw(), bufs, addr, flags)
+    |              ^^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SOL_SOCKET` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:748:53
+    |
+748 |             getsockopt::<c_int>(self.as_raw(), sys::SOL_SOCKET, sys::SO_BROADCAST)
+    |                                                     ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SO_BROADCAST` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:748:70
+    |
+748 |             getsockopt::<c_int>(self.as_raw(), sys::SOL_SOCKET, sys::SO_BROADCAST)
+    |                                                                      ^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SOL_SOCKET` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:761:22
+    |
+761 |                 sys::SOL_SOCKET,
+    |                      ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SO_BROADCAST` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:762:22
+    |
+762 |                 sys::SO_BROADCAST,
+    |                      ^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SOL_SOCKET` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:774:64
+    |
+774 |         match unsafe { getsockopt::<c_int>(self.as_raw(), sys::SOL_SOCKET, sys::SO_ERROR) } {
+    |                                                                ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SO_ERROR` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:774:81
+    |
+774 |         match unsafe { getsockopt::<c_int>(self.as_raw(), sys::SOL_SOCKET, sys::SO_ERROR) } {
+    |                                                                                 ^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SOL_SOCKET` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:788:52
+    |
+788 |             getsockopt::<Bool>(self.as_raw(), sys::SOL_SOCKET, sys::SO_KEEPALIVE)
+    |                                                    ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SO_KEEPALIVE` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:788:69
+    |
+788 |             getsockopt::<Bool>(self.as_raw(), sys::SOL_SOCKET, sys::SO_KEEPALIVE)
+    |                                                                     ^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SOL_SOCKET` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:800:22
+    |
+800 |                 sys::SOL_SOCKET,
+    |                      ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SO_KEEPALIVE` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:801:22
+    |
+801 |                 sys::SO_KEEPALIVE,
+    |                      ^^^^^^^^^^^^ not found in `sys`
+
+error[E0412]: cannot find type `linger` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:814:31
+    |
+814 |             getsockopt::<sys::linger>(self.as_raw(), sys::SOL_SOCKET, sys::SO_LINGER)
+    |                               ^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SOL_SOCKET` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:814:59
+    |
+814 |             getsockopt::<sys::linger>(self.as_raw(), sys::SOL_SOCKET, sys::SO_LINGER)
+    |                                                           ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SO_LINGER` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:814:76
+    |
+814 |             getsockopt::<sys::linger>(self.as_raw(), sys::SOL_SOCKET, sys::SO_LINGER)
+    |                                                                            ^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SOL_SOCKET` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:835:49
+    |
+835 |         unsafe { setsockopt(self.as_raw(), sys::SOL_SOCKET, sys::SO_LINGER, linger) }
+    |                                                 ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SO_LINGER` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:835:66
+    |
+835 |         unsafe { setsockopt(self.as_raw(), sys::SOL_SOCKET, sys::SO_LINGER, linger) }
+    |                                                                  ^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SOL_SOCKET` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:847:53
+    |
+847 |             getsockopt::<c_int>(self.as_raw(), sys::SOL_SOCKET, sys::SO_OOBINLINE)
+    |                                                     ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SO_OOBINLINE` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:847:70
+    |
+847 |             getsockopt::<c_int>(self.as_raw(), sys::SOL_SOCKET, sys::SO_OOBINLINE)
+    |                                                                      ^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SOL_SOCKET` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:864:22
+    |
+864 |                 sys::SOL_SOCKET,
+    |                      ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SO_OOBINLINE` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:865:22
+    |
+865 |                 sys::SO_OOBINLINE,
+    |                      ^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SOL_SOCKET` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:878:53
+    |
+878 |             getsockopt::<c_int>(self.as_raw(), sys::SOL_SOCKET, sys::SO_RCVBUF)
+    |                                                     ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SO_RCVBUF` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:878:70
+    |
+878 |             getsockopt::<c_int>(self.as_raw(), sys::SOL_SOCKET, sys::SO_RCVBUF)
+    |                                                                      ^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SOL_SOCKET` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:891:22
+    |
+891 |                 sys::SOL_SOCKET,
+    |                      ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SO_RCVBUF` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:892:22
+    |
+892 |                 sys::SO_RCVBUF,
+    |                      ^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `timeout_opt` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:903:14
+    |
+903 |         sys::timeout_opt(self.as_raw(), sys::SOL_SOCKET, sys::SO_RCVTIMEO)
+    |              ^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SOL_SOCKET` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:903:46
+    |
+903 |         sys::timeout_opt(self.as_raw(), sys::SOL_SOCKET, sys::SO_RCVTIMEO)
+    |                                              ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SO_RCVTIMEO` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:903:63
+    |
+903 |         sys::timeout_opt(self.as_raw(), sys::SOL_SOCKET, sys::SO_RCVTIMEO)
+    |                                                               ^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `set_timeout_opt` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:911:14
+    |
+911 |         sys::set_timeout_opt(self.as_raw(), sys::SOL_SOCKET, sys::SO_RCVTIMEO, duration)
+    |              ^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SOL_SOCKET` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:911:50
+    |
+911 |         sys::set_timeout_opt(self.as_raw(), sys::SOL_SOCKET, sys::SO_RCVTIMEO, duration)
+    |                                                  ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SO_RCVTIMEO` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:911:67
+    |
+911 |         sys::set_timeout_opt(self.as_raw(), sys::SOL_SOCKET, sys::SO_RCVTIMEO, duration)
+    |                                                                   ^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SOL_SOCKET` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:921:53
+    |
+921 |             getsockopt::<c_int>(self.as_raw(), sys::SOL_SOCKET, sys::SO_REUSEADDR)
+    |                                                     ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SO_REUSEADDR` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:921:70
+    |
+921 |             getsockopt::<c_int>(self.as_raw(), sys::SOL_SOCKET, sys::SO_REUSEADDR)
+    |                                                                      ^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SOL_SOCKET` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:935:22
+    |
+935 |                 sys::SOL_SOCKET,
+    |                      ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SO_REUSEADDR` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:936:22
+    |
+936 |                 sys::SO_REUSEADDR,
+    |                      ^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SOL_SOCKET` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:949:53
+    |
+949 |             getsockopt::<c_int>(self.as_raw(), sys::SOL_SOCKET, sys::SO_SNDBUF)
+    |                                                     ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SO_SNDBUF` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:949:70
+    |
+949 |             getsockopt::<c_int>(self.as_raw(), sys::SOL_SOCKET, sys::SO_SNDBUF)
+    |                                                                      ^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SOL_SOCKET` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:962:22
+    |
+962 |                 sys::SOL_SOCKET,
+    |                      ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SO_SNDBUF` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:963:22
+    |
+963 |                 sys::SO_SNDBUF,
+    |                      ^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `timeout_opt` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:974:14
+    |
+974 |         sys::timeout_opt(self.as_raw(), sys::SOL_SOCKET, sys::SO_SNDTIMEO)
+    |              ^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SOL_SOCKET` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:974:46
+    |
+974 |         sys::timeout_opt(self.as_raw(), sys::SOL_SOCKET, sys::SO_SNDTIMEO)
+    |                                              ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SO_SNDTIMEO` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:974:63
+    |
+974 |         sys::timeout_opt(self.as_raw(), sys::SOL_SOCKET, sys::SO_SNDTIMEO)
+    |                                                               ^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `set_timeout_opt` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:982:14
+    |
+982 |         sys::set_timeout_opt(self.as_raw(), sys::SOL_SOCKET, sys::SO_SNDTIMEO, duration)
+    |              ^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SOL_SOCKET` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:982:50
+    |
+982 |         sys::set_timeout_opt(self.as_raw(), sys::SOL_SOCKET, sys::SO_SNDTIMEO, duration)
+    |                                                  ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SO_SNDTIMEO` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:982:67
+    |
+982 |         sys::set_timeout_opt(self.as_raw(), sys::SOL_SOCKET, sys::SO_SNDTIMEO, duration)
+    |                                                                   ^^^^^^^^^^^ not found in `sys`
+
+error[E0412]: cannot find type `linger` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:986:29
+    |
+986 | fn from_linger(linger: sys::linger) -> Option<Duration> {
+    |                             ^^^^^^ not found in `sys`
+
+error[E0412]: cannot find type `linger` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:994:52
+    |
+994 | fn into_linger(duration: Option<Duration>) -> sys::linger {
+    |                                                    ^^^^^^ not found in `sys`
+
+error[E0422]: cannot find struct, variant or union type `linger` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:996:32
+    |
+996 |         Some(duration) => sys::linger {
+    |                                ^^^^^^ not found in `sys`
+
+error[E0422]: cannot find struct, variant or union type `linger` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1000:22
+     |
+1000 |         None => sys::linger {
+     |                      ^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1022:53
+     |
+1022 |             getsockopt::<c_int>(self.as_raw(), sys::IPPROTO_IP, sys::IP_HDRINCL)
+     |                                                     ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IP_HDRINCL` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1022:70
+     |
+1022 |             getsockopt::<c_int>(self.as_raw(), sys::IPPROTO_IP, sys::IP_HDRINCL)
+     |                                                                      ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1044:22
+     |
+1044 |                 sys::IPPROTO_IP,
+     |                      ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IP_HDRINCL` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1045:22
+     |
+1045 |                 sys::IP_HDRINCL,
+     |                      ^^^^^^^^^^ not found in `sys`
+
+error[E0422]: cannot find struct, variant or union type `IpMreq` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1101:25
+     |
+1101 |         let mreq = sys::IpMreq {
+     |                         ^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `to_in_addr` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1102:33
+     |
+1102 |             imr_multiaddr: sys::to_in_addr(multiaddr),
+     |                                 ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `to_in_addr` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1103:33
+     |
+1103 |             imr_interface: sys::to_in_addr(interface),
+     |                                 ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1105:49
+     |
+1105 |         unsafe { setsockopt(self.as_raw(), sys::IPPROTO_IP, sys::IP_ADD_MEMBERSHIP, mreq) }
+     |                                                 ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IP_ADD_MEMBERSHIP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1105:66
+     |
+1105 |         unsafe { setsockopt(self.as_raw(), sys::IPPROTO_IP, sys::IP_ADD_MEMBERSHIP, mreq) }
+     |                                                                  ^^^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0422]: cannot find struct, variant or union type `IpMreq` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1114:25
+     |
+1114 |         let mreq = sys::IpMreq {
+     |                         ^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `to_in_addr` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1115:33
+     |
+1115 |             imr_multiaddr: sys::to_in_addr(multiaddr),
+     |                                 ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `to_in_addr` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1116:33
+     |
+1116 |             imr_interface: sys::to_in_addr(interface),
+     |                                 ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1121:22
+     |
+1121 |                 sys::IPPROTO_IP,
+     |                      ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IP_DROP_MEMBERSHIP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1122:22
+     |
+1122 |                 sys::IP_DROP_MEMBERSHIP,
+     |                      ^^^^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `to_mreqn` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1147:26
+     |
+1147 |         let mreqn = sys::to_mreqn(multiaddr, interface);
+     |                          ^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1151:22
+     |
+1151 |                 sys::IPPROTO_IP,
+     |                      ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IP_ADD_MEMBERSHIP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1152:22
+     |
+1152 |                 sys::IP_ADD_MEMBERSHIP,
+     |                      ^^^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `to_mreqn` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1176:26
+     |
+1176 |         let mreqn = sys::to_mreqn(multiaddr, interface);
+     |                          ^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1180:22
+     |
+1180 |                 sys::IPPROTO_IP,
+     |                      ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IP_DROP_MEMBERSHIP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1181:22
+     |
+1181 |                 sys::IP_DROP_MEMBERSHIP,
+     |                      ^^^^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0422]: cannot find struct, variant or union type `IpMreqSource` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1208:26
+     |
+1208 |         let mreqs = sys::IpMreqSource {
+     |                          ^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `to_in_addr` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1209:33
+     |
+1209 |             imr_multiaddr: sys::to_in_addr(group),
+     |                                 ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `to_in_addr` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1210:33
+     |
+1210 |             imr_interface: sys::to_in_addr(interface),
+     |                                 ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `to_in_addr` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1211:34
+     |
+1211 |             imr_sourceaddr: sys::to_in_addr(source),
+     |                                  ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1216:22
+     |
+1216 |                 sys::IPPROTO_IP,
+     |                      ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IP_ADD_SOURCE_MEMBERSHIP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1217:22
+     |
+1217 |                 sys::IP_ADD_SOURCE_MEMBERSHIP,
+     |                      ^^^^^^^^^^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0422]: cannot find struct, variant or union type `IpMreqSource` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1242:26
+     |
+1242 |         let mreqs = sys::IpMreqSource {
+     |                          ^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `to_in_addr` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1243:33
+     |
+1243 |             imr_multiaddr: sys::to_in_addr(group),
+     |                                 ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `to_in_addr` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1244:33
+     |
+1244 |             imr_interface: sys::to_in_addr(interface),
+     |                                 ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `to_in_addr` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1245:34
+     |
+1245 |             imr_sourceaddr: sys::to_in_addr(source),
+     |                                  ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1250:22
+     |
+1250 |                 sys::IPPROTO_IP,
+     |                      ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IP_DROP_SOURCE_MEMBERSHIP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1251:22
+     |
+1251 |                 sys::IP_DROP_SOURCE_MEMBERSHIP,
+     |                      ^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1264:44
+     |
+1264 |             getsockopt(self.as_raw(), sys::IPPROTO_IP, sys::IP_MULTICAST_IF).map(sys::from_in_addr)
+     |                                            ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IP_MULTICAST_IF` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1264:61
+     |
+1264 |             getsockopt(self.as_raw(), sys::IPPROTO_IP, sys::IP_MULTICAST_IF).map(sys::from_in_addr)
+     |                                                             ^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `from_in_addr` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1264:87
+     |
+1264 |             getsockopt(self.as_raw(), sys::IPPROTO_IP, sys::IP_MULTICAST_IF).map(sys::from_in_addr)
+     |                                                                                       ^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `to_in_addr` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1272:30
+     |
+1272 |         let interface = sys::to_in_addr(interface);
+     |                              ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1276:22
+     |
+1276 |                 sys::IPPROTO_IP,
+     |                      ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IP_MULTICAST_IF` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1277:22
+     |
+1277 |                 sys::IP_MULTICAST_IF,
+     |                      ^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1290:53
+     |
+1290 |             getsockopt::<c_int>(self.as_raw(), sys::IPPROTO_IP, sys::IP_MULTICAST_LOOP)
+     |                                                     ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IP_MULTICAST_LOOP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1290:70
+     |
+1290 |             getsockopt::<c_int>(self.as_raw(), sys::IPPROTO_IP, sys::IP_MULTICAST_LOOP)
+     |                                                                      ^^^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1303:22
+     |
+1303 |                 sys::IPPROTO_IP,
+     |                      ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IP_MULTICAST_LOOP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1304:22
+     |
+1304 |                 sys::IP_MULTICAST_LOOP,
+     |                      ^^^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1317:53
+     |
+1317 |             getsockopt::<c_int>(self.as_raw(), sys::IPPROTO_IP, sys::IP_MULTICAST_TTL)
+     |                                                     ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IP_MULTICAST_TTL` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1317:70
+     |
+1317 |             getsockopt::<c_int>(self.as_raw(), sys::IPPROTO_IP, sys::IP_MULTICAST_TTL)
+     |                                                                      ^^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1333:22
+     |
+1333 |                 sys::IPPROTO_IP,
+     |                      ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IP_MULTICAST_TTL` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1334:22
+     |
+1334 |                 sys::IP_MULTICAST_TTL,
+     |                      ^^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1347:53
+     |
+1347 |             getsockopt::<c_int>(self.as_raw(), sys::IPPROTO_IP, sys::IP_TTL).map(|ttl| ttl as u32)
+     |                                                     ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IP_TTL` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1347:70
+     |
+1347 |             getsockopt::<c_int>(self.as_raw(), sys::IPPROTO_IP, sys::IP_TTL).map(|ttl| ttl as u32)
+     |                                                                      ^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1356:49
+     |
+1356 |         unsafe { setsockopt(self.as_raw(), sys::IPPROTO_IP, sys::IP_TTL, ttl as c_int) }
+     |                                                 ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IP_TTL` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1356:66
+     |
+1356 |         unsafe { setsockopt(self.as_raw(), sys::IPPROTO_IP, sys::IP_TTL, ttl as c_int) }
+     |                                                                  ^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1373:49
+     |
+1373 |         unsafe { setsockopt(self.as_raw(), sys::IPPROTO_IP, sys::IP_TOS, tos as c_int) }
+     |                                                 ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IP_TOS` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1373:66
+     |
+1373 |         unsafe { setsockopt(self.as_raw(), sys::IPPROTO_IP, sys::IP_TOS, tos as c_int) }
+     |                                                                  ^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1392:53
+     |
+1392 |             getsockopt::<c_int>(self.as_raw(), sys::IPPROTO_IP, sys::IP_TOS).map(|tos| tos as u32)
+     |                                                     ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IP_TOS` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1392:70
+     |
+1392 |             getsockopt::<c_int>(self.as_raw(), sys::IPPROTO_IP, sys::IP_TOS).map(|tos| tos as u32)
+     |                                                                      ^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1417:22
+     |
+1417 |                 sys::IPPROTO_IP,
+     |                      ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IP_RECVTOS` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1418:22
+     |
+1418 |                 sys::IP_RECVTOS,
+     |                      ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1441:53
+     |
+1441 |             getsockopt::<c_int>(self.as_raw(), sys::IPPROTO_IP, sys::IP_RECVTOS)
+     |                                                     ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IP_RECVTOS` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1441:70
+     |
+1441 |             getsockopt::<c_int>(self.as_raw(), sys::IPPROTO_IP, sys::IP_RECVTOS)
+     |                                                                      ^^^^^^^^^^ not found in `sys`
+
+error[E0422]: cannot find struct, variant or union type `Ipv6Mreq` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1461:25
+     |
+1461 |         let mreq = sys::Ipv6Mreq {
+     |                         ^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `to_in6_addr` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1462:36
+     |
+1462 |             ipv6mr_multiaddr: sys::to_in6_addr(multiaddr),
+     |                                    ^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IPV6` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1469:22
+     |
+1469 |                 sys::IPPROTO_IPV6,
+     |                      ^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPV6_ADD_MEMBERSHIP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1470:22
+     |
+1470 |                 sys::IPV6_ADD_MEMBERSHIP,
+     |                      ^^^^^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0422]: cannot find struct, variant or union type `Ipv6Mreq` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1484:25
+     |
+1484 |         let mreq = sys::Ipv6Mreq {
+     |                         ^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `to_in6_addr` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1485:36
+     |
+1485 |             ipv6mr_multiaddr: sys::to_in6_addr(multiaddr),
+     |                                    ^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IPV6` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1492:22
+     |
+1492 |                 sys::IPPROTO_IPV6,
+     |                      ^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPV6_DROP_MEMBERSHIP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1493:22
+     |
+1493 |                 sys::IPV6_DROP_MEMBERSHIP,
+     |                      ^^^^^^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IPV6` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1506:53
+     |
+1506 |             getsockopt::<c_int>(self.as_raw(), sys::IPPROTO_IPV6, sys::IPV6_MULTICAST_HOPS)
+     |                                                     ^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPV6_MULTICAST_HOPS` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1506:72
+     |
+1506 |             getsockopt::<c_int>(self.as_raw(), sys::IPPROTO_IPV6, sys::IPV6_MULTICAST_HOPS)
+     |                                                                        ^^^^^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IPV6` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1520:22
+     |
+1520 |                 sys::IPPROTO_IPV6,
+     |                      ^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPV6_MULTICAST_HOPS` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1521:22
+     |
+1521 |                 sys::IPV6_MULTICAST_HOPS,
+     |                      ^^^^^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IPV6` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1534:53
+     |
+1534 |             getsockopt::<c_int>(self.as_raw(), sys::IPPROTO_IPV6, sys::IPV6_MULTICAST_IF)
+     |                                                     ^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPV6_MULTICAST_IF` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1534:72
+     |
+1534 |             getsockopt::<c_int>(self.as_raw(), sys::IPPROTO_IPV6, sys::IPV6_MULTICAST_IF)
+     |                                                                        ^^^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IPV6` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1548:22
+     |
+1548 |                 sys::IPPROTO_IPV6,
+     |                      ^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPV6_MULTICAST_IF` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1549:22
+     |
+1549 |                 sys::IPV6_MULTICAST_IF,
+     |                      ^^^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IPV6` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1562:53
+     |
+1562 |             getsockopt::<c_int>(self.as_raw(), sys::IPPROTO_IPV6, sys::IPV6_MULTICAST_LOOP)
+     |                                                     ^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPV6_MULTICAST_LOOP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1562:72
+     |
+1562 |             getsockopt::<c_int>(self.as_raw(), sys::IPPROTO_IPV6, sys::IPV6_MULTICAST_LOOP)
+     |                                                                        ^^^^^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IPV6` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1575:22
+     |
+1575 |                 sys::IPPROTO_IPV6,
+     |                      ^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPV6_MULTICAST_LOOP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1576:22
+     |
+1576 |                 sys::IPV6_MULTICAST_LOOP,
+     |                      ^^^^^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IPV6` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1587:53
+     |
+1587 |             getsockopt::<c_int>(self.as_raw(), sys::IPPROTO_IPV6, sys::IPV6_UNICAST_HOPS)
+     |                                                     ^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPV6_UNICAST_HOPS` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1587:72
+     |
+1587 |             getsockopt::<c_int>(self.as_raw(), sys::IPPROTO_IPV6, sys::IPV6_UNICAST_HOPS)
+     |                                                                        ^^^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IPV6` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1599:22
+     |
+1599 |                 sys::IPPROTO_IPV6,
+     |                      ^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPV6_UNICAST_HOPS` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1600:22
+     |
+1600 |                 sys::IPV6_UNICAST_HOPS,
+     |                      ^^^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IPV6` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1613:53
+     |
+1613 |             getsockopt::<c_int>(self.as_raw(), sys::IPPROTO_IPV6, sys::IPV6_V6ONLY)
+     |                                                     ^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPV6_V6ONLY` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1613:72
+     |
+1613 |             getsockopt::<c_int>(self.as_raw(), sys::IPPROTO_IPV6, sys::IPV6_V6ONLY)
+     |                                                                        ^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_IPV6` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1630:22
+     |
+1630 |                 sys::IPPROTO_IPV6,
+     |                      ^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPV6_V6ONLY` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1631:22
+     |
+1631 |                 sys::IPV6_V6ONLY,
+     |                      ^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `keepalive_time` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1663:14
+     |
+1663 |         sys::keepalive_time(self.as_raw())
+     |              ^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find function `set_tcp_keepalive` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1790:14
+     |
+1790 |         sys::set_tcp_keepalive(self.as_raw(), params)
+     |              ^^^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_TCP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1800:52
+     |
+1800 |             getsockopt::<Bool>(self.as_raw(), sys::IPPROTO_TCP, sys::TCP_NODELAY)
+     |                                                    ^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `TCP_NODELAY` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1800:70
+     |
+1800 |             getsockopt::<Bool>(self.as_raw(), sys::IPPROTO_TCP, sys::TCP_NODELAY)
+     |                                                                      ^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_TCP` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1816:22
+     |
+1816 |                 sys::IPPROTO_TCP,
+     |                      ^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `TCP_NODELAY` in module `sys`
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1817:22
+     |
+1817 |                 sys::TCP_NODELAY,
+     |                      ^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `AF_INET` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/lib.rs:158:42
+    |
+158 |     pub const IPV4: Domain = Domain(sys::AF_INET);
+    |                                          ^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `AF_INET6` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/lib.rs:161:42
+    |
+161 |     pub const IPV6: Domain = Domain(sys::AF_INET6);
+    |                                          ^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SOCK_STREAM` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/lib.rs:200:40
+    |
+200 |     pub const STREAM: Type = Type(sys::SOCK_STREAM);
+    |                                        ^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SOCK_DGRAM` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/lib.rs:205:39
+    |
+205 |     pub const DGRAM: Type = Type(sys::SOCK_DGRAM);
+    |                                       ^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SOCK_SEQPACKET` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/lib.rs:210:43
+    |
+210 |     pub const SEQPACKET: Type = Type(sys::SOCK_SEQPACKET);
+    |                                           ^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `SOCK_RAW` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/lib.rs:215:37
+    |
+215 |     pub const RAW: Type = Type(sys::SOCK_RAW);
+    |                                     ^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_ICMP` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/lib.rs:242:48
+    |
+242 |     pub const ICMPV4: Protocol = Protocol(sys::IPPROTO_ICMP);
+    |                                                ^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_ICMPV6` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/lib.rs:245:48
+    |
+245 |     pub const ICMPV6: Protocol = Protocol(sys::IPPROTO_ICMPV6);
+    |                                                ^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_TCP` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/lib.rs:248:45
+    |
+248 |     pub const TCP: Protocol = Protocol(sys::IPPROTO_TCP);
+    |                                             ^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `IPPROTO_UDP` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/lib.rs:251:45
+    |
+251 |     pub const UDP: Protocol = Protocol(sys::IPPROTO_UDP);
+    |                                             ^^^^^^^^^^^ not found in `sys`
+
+error[E0425]: cannot find value `MSG_TRUNC` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/lib.rs:284:23
+    |
+284 |         self.0 & sys::MSG_TRUNC != 0
+    |                       ^^^^^^^^^ not found in `sys`
+
+error[E0412]: cannot find type `MaybeUninitSlice` in module `sys`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/lib.rs:292:38
+    |
+292 | pub struct MaybeUninitSlice<'a>(sys::MaybeUninitSlice<'a>);
+    |                                      ^^^^^^^^^^^^^^^^ not found in `sys`
+
+error[E0618]: expected function, found `F`
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/sockaddr.rs:130:9
+    |
+118 |     pub unsafe fn init<F, T>(init: F) -> io::Result<(T, SockAddr)>
+    |                              ---- `init` has type `F`
+...
+130 |         init(storage.as_mut_ptr(), &mut len).map(|res| {
+    |         ^^^^--------------------------------
+    |         |
+    |         call expression requires function
+
+error[E0061]: this function takes 4 arguments but 3 arguments were supplied
+   --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/sockaddr.rs:179:33
+    |
+179 |               Some(SocketAddr::V6(SocketAddrV6::new(
+    |  _________________________________^^^^^^^^^^^^^^^^^-
+180 | |                 ip,
+181 | |                 port,
+182 | |                 addr.sin6_flowinfo,
+...   |
+188 | |                 },
+189 | |             )))
+    | |_____________- an argument of type `u32` is missing
+    |
+note: associated function defined here
+   --> /Users/skyzh/.rustup/toolchains/stable-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/net/socket_addr.rs:363:18
+    |
+363 |     pub const fn new(ip: Ipv6Addr, port: u16, flowinfo: u32, scope_id: u32) -> SocketAddrV6 {
+    |                  ^^^
+help: provide the argument
+    |
+179 |             Some(SocketAddr::V6(SocketAddrV6::new(ip, port, addr.sin6_flowinfo, /* u32 */)))
+    |                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0308]: mismatched types
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1898:23
+     |
+1898 | from!(net::TcpStream, Socket);
+     |                       ^^^^^^ expected `Socket`, found `()`
+     |
+    ::: /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/lib.rs:104:16
+     |
+104  |             fn from(socket: $from) -> $for {
+     |                ---- implicitly returns `()` as its body has no tail or `return` expression
+
+error[E0308]: mismatched types
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1899:25
+     |
+1899 | from!(net::TcpListener, Socket);
+     |                         ^^^^^^ expected `Socket`, found `()`
+     |
+    ::: /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/lib.rs:104:16
+     |
+104  |             fn from(socket: $from) -> $for {
+     |                ---- implicitly returns `()` as its body has no tail or `return` expression
+
+error[E0308]: mismatched types
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1900:23
+     |
+1900 | from!(net::UdpSocket, Socket);
+     |                       ^^^^^^ expected `Socket`, found `()`
+     |
+    ::: /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/lib.rs:104:16
+     |
+104  |             fn from(socket: $from) -> $for {
+     |                ---- implicitly returns `()` as its body has no tail or `return` expression
+
+error[E0308]: mismatched types
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1901:15
+     |
+1901 | from!(Socket, net::TcpStream);
+     |               ^^^^^^^^^^^^^^ expected `TcpStream`, found `()`
+     |
+    ::: /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/lib.rs:104:16
+     |
+104  |             fn from(socket: $from) -> $for {
+     |                ---- implicitly returns `()` as its body has no tail or `return` expression
+
+error[E0308]: mismatched types
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1902:15
+     |
+1902 | from!(Socket, net::TcpListener);
+     |               ^^^^^^^^^^^^^^^^ expected `TcpListener`, found `()`
+     |
+    ::: /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/lib.rs:104:16
+     |
+104  |             fn from(socket: $from) -> $for {
+     |                ---- implicitly returns `()` as its body has no tail or `return` expression
+
+error[E0308]: mismatched types
+    --> /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/socket.rs:1903:15
+     |
+1903 | from!(Socket, net::UdpSocket);
+     |               ^^^^^^^^^^^^^^ expected `UdpSocket`, found `()`
+     |
+    ::: /Users/skyzh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.7/src/lib.rs:104:16
+     |
+104  |             fn from(socket: $from) -> $for {
+     |                ---- implicitly returns `()` as its body has no tail or `return` expression
+
+Some errors have detailed explanations: E0061, E0308, E0412, E0422, E0425, E0432, E0433, E0583, E0618.
+For more information about an error, try `rustc --explain E0061`.
+error: could not compile `socket2` (lib) due to 201 previous errors
+warning: build failed, waiting for other jobs to finish...

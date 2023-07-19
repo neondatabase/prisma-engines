@@ -150,6 +150,12 @@ source = "git+https://github.com/prisma/barrel.git?branch=mssql-support#4e84cf3d
 
 [[package]]
 name = "base64"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2015e3793554aa5b6007e3a72959e84c1070039e74f13dde08fa64afe1ddd892"
+
+[[package]]
+name = "base64"
 version = "0.12.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3441f0f7b02788e948e47f457ca01f1d7e6d92c693bc132c22b087d3141c03ff"
@@ -435,6 +441,8 @@ checksum = "510ca239cf13b7f8d16a2b48f263de7b4f8c566f0af58d901031473c76afb1e3"
 name = "connector-wasm"
 version = "0.1.0"
 dependencies = [
+ "base64 0.2.1",
+ "getrandom 0.2.7",
  "psl",
  "query-core",
  "request-handlers",
@@ -442,6 +450,7 @@ dependencies = [
  "sql-query-connector",
  "wasm-bindgen",
  "wasm-bindgen-futures",
+ "wasm-bindgen-test",
 ]
 
 [[package]]
@@ -455,6 +464,16 @@ dependencies = [
  "libc",
  "terminal_size",
  "winapi",
+]
+
+[[package]]
+name = "console_error_panic_hook"
+version = "0.1.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a06aeb73f470f66dcdbf7223caeebb85984942f22f1adb2a088cf9668146bbbc"
+dependencies = [
+ "cfg-if",
+ "wasm-bindgen",
 ]
 
 [[package]]
@@ -1059,8 +1078,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4eb1a864a501629691edf6c15a593b7a51eebaa1e8468e9ddc623de7c9b58ec6"
 dependencies = [
  "cfg-if",
+ "js-sys",
  "libc",
  "wasi 0.11.0+wasi-snapshot-preview1",
+ "wasm-bindgen",
 ]
 
 [[package]]
@@ -1318,6 +1339,9 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7a5bbe824c507c5da5956355e86a746d82e0e1464f65d862cc5e71da70e94b2c"
 dependencies = [
  "cfg-if",
+ "js-sys",
+ "wasm-bindgen",
+ "web-sys",
 ]
 
 [[package]]
@@ -2616,6 +2640,7 @@ dependencies = [
  "enumflags2",
  "futures",
  "indexmap",
+ "instant",
  "itertools",
  "lru",
  "once_cell",
@@ -2634,6 +2659,7 @@ dependencies = [
  "tracing-subscriber",
  "user-facing-errors",
  "uuid 1.1.2",
+ "wasm-bindgen",
 ]
 
 [[package]]
@@ -3249,6 +3275,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "scoped-tls"
+version = "1.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e1cf6437eb19a8f4a6cc0f7dca544973b0b78843adbfeb3683d1a94a0024a294"
+
+[[package]]
 name = "scopeguard"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3619,6 +3651,7 @@ dependencies = [
  "tracing-opentelemetry",
  "user-facing-errors",
  "uuid 1.1.2",
+ "wasm-bindgen",
 ]
 
 [[package]]
@@ -4608,6 +4641,30 @@ name = "wasm-bindgen-shared"
 version = "0.2.84"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0046fef7e28c3804e5e38bfa31ea2a0f73905319b677e57ebe37e49358989b5d"
+
+[[package]]
+name = "wasm-bindgen-test"
+version = "0.3.29"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "45c8d417d87eefa0087e62e3c75ad086be39433449e2961add9a5d9ce5acc2f1"
+dependencies = [
+ "console_error_panic_hook",
+ "js-sys",
+ "scoped-tls",
+ "wasm-bindgen",
+ "wasm-bindgen-futures",
+ "wasm-bindgen-test-macro",
+]
+
+[[package]]
+name = "wasm-bindgen-test-macro"
+version = "0.3.29"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d0e560d44db5e73b69a9757a15512fe7e1ef93ed2061c928871a4025798293dd"
+dependencies = [
+ "proc-macro2",
+ "quote",
+]
 
 [[package]]
 name = "wasm-logger"

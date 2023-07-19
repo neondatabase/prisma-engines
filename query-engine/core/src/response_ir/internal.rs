@@ -23,6 +23,20 @@ type CheckedItemsWithParents = IndexMap<Option<SelectionResult>, Item>;
 /// the contained items, i.e. the Items are all unchecked.
 type UncheckedItemsWithParents = IndexMap<Option<SelectionResult>, Vec<Item>>;
 
+use wasm_bindgen::prelude::*;
+
+// lifted from the `console_log` example
+#[wasm_bindgen]
+extern "C" {
+    #[wasm_bindgen(js_namespace = console)]
+    fn log(a: &str);
+}
+
+macro_rules! console_log {
+    ($($t:tt)*) => (log(&format_args!($($t)*).to_string()))
+}
+
+
 /// The query validation makes sure that the output selection already has the correct shape.
 /// This means that we can make the following assumptions:
 /// - Objects don't need to check required fields.

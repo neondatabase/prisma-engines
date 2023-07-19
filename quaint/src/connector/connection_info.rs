@@ -120,7 +120,7 @@ impl ConnectionInfo {
     pub fn schema_name(&self) -> &str {
         match self {
             #[cfg(feature = "postgresql")]
-            ConnectionInfo::Postgres(url) => todo!(),
+            ConnectionInfo::Postgres(url) => "no_schema",
             #[cfg(feature = "mysql")]
             ConnectionInfo::Mysql(url) => url.dbname(),
             #[cfg(feature = "mssql")]

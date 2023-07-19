@@ -13,7 +13,7 @@ itertools = "0.10"
 graphql-parser = { git = "https://github.com/prisma/graphql-parser" }
 serde.workspace = true
 serde_json.workspace = true
-futures = { version = "0.3", no-default-features = true }
+futures = "0.3"
 indexmap = { version = "1.7", features = ["serde-1"] }
 bigdecimal = "0.3"
 thiserror = "1"

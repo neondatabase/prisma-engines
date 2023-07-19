@@ -6,7 +6,8 @@ use crate::{
 use connector::{Connection, ConnectionLike, Connector};
 use futures::future;
 use schema::{QuerySchema, QuerySchemaRef};
-use std::time::{Duration, Instant};
+use std::time::{Duration};
+use instant::Instant;
 use tracing::Instrument;
 use tracing_futures::WithSubscriber;
 

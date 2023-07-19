@@ -16,34 +16,59 @@ static mut QUERY_SCHEMA: Option<Arc<QuerySchema>> = None;
 #[wasm_bindgen]
 extern "C" {
     #[wasm_bindgen(js_namespace = console)]
-    fn log(a: &str);
+    pub fn log(a: &str);
 }
 
 macro_rules! console_log {
-    ($($t:tt)*) => (log(&format_args!($($t)*).to_string()))
+    ($($t:tt)*) => (crate::log(&format_args!($($t)*).to_string()))
 }
 
 #[wasm_bindgen]
-pub async fn start(datamodel_str: &str) {
+pub fn start(datamodel_str: &str) {
     console_log!("initializing...");
-    let allocated = datamodel_str.to_string();
+    let base64 = base64::decode(&datamodel_str).unwrap();
+    let allocated = String::from_utf8(base64).unwrap();
     let arced_schema = Arc::new(psl::validate(SourceFile::new_allocated(allocated.into())));
-    unsafe { QUERY_SCHEMA = Some(Arc::new(schema::build(arced_schema, false))) }
+    let schema = Arc::new(schema::build(arced_schema, false));
     console_log!("initialize complete...");
+    // for model in schema.internal_data_model.models() {
+    //     console_log!("{:?}", model);
+    // }
+    unsafe { QUERY_SCHEMA = Some(schema) }
 }
 
 #[wasm_bindgen]
 pub async fn to_sql(query: &str) {
-    let body = RequestBody::try_from_slice(query.as_bytes(), EngineProtocol::Graphql).unwrap();
+    console_log!("to_sql: {}", query);
+    let body = RequestBody::try_from_slice(query.as_bytes(), EngineProtocol::Json).unwrap();
     let query_schema = unsafe { QUERY_SCHEMA.as_ref().unwrap() }.clone();
-    match body.into_doc(&query_schema) {
-        Ok(QueryDocument::Single(query)) => {
+    match body.into_doc(&query_schema).unwrap() {
+        QueryDocument::Single(query) => {
             use query_core::QueryExecutor;
             let connector = sql_query_connector::database::PostgreSql::new();
             let res = InterpretingExecutor::new(connector, false)
-                .execute(None, query, query_schema.clone(), None, EngineProtocol::Graphql)
+                .execute(None, query, query_schema.clone(), None, EngineProtocol::Json)
                 .await;
         }
-        _ => unimplemented!(),
+        x => unimplemented!("{:?}", x)
+    }
+}
+
+#[wasm_bindgen]
+pub fn hello_world() {
+    console_log!("hello, world!");
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use wasm_bindgen_test::*;
+
+    #[wasm_bindgen_test]
+    async fn test_everything() {
+        let x = "Z2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgICAgICAgID0gInByaXNtYS1jbGllbnQtanMiCiAgb3V0cHV0ICAgICAgICAgID0gIi4uLy5wcmlzbWEvY2xpZW50IgogIHByZXZpZXdGZWF0dXJlcyA9IFtdCn0KCmRhdGFzb3VyY2UgZGIgewogIHByb3ZpZGVyID0gInBvc3RncmVzcWwiCiAgdXJsICAJPSBlbnYoIkRBVEFCQVNFX1VSTCIpCiAgZGlyZWN0VXJsID0gZW52KCJESVJFQ1RfVVJMIikKICAvLyBJZiB5b3Ugd2FudCB0byB1c2UgUHJpc21hIE1pZ3JhdGUsIHlvdSB3aWxsIG5lZWQgdG8gbWFudWFsbHkgY3JlYXRlIGEgc2hhZG93IGRhdGFiYXNlCiAgLy8gaHR0cHM6Ly9uZW9uLnRlY2gvZG9jcy9ndWlkZXMvcHJpc21hLW1pZ3JhdGUjY29uZmlndXJlLWEtc2hhZG93LWRhdGFiYXNlLWZvci1wcmlzbWEtbWlncmF0ZQogIC8vIG1ha2Ugc3VyZSB0byBhcHBlbmQgP2Nvbm5lY3RfdGltZW91dD0xMCB0byB0aGUgY29ubmVjdGlvbiBzdHJpbmcKICAvLyBzaGFkb3dEYXRhYmFzZVVybCA9IGVudijigJxTSEFET1dfREFUQUJBU0VfVVJM4oCdKQp9Cgptb2RlbCBMaW5rIHsKICBpZCAgICAgICAgU3RyaW5nICAgQGlkIEBkZWZhdWx0KHV1aWQoKSkKICBjcmVhdGVkQXQgRGF0ZVRpbWUgQGRlZmF1bHQobm93KCkpCiAgdXBkYXRlZEF0IERhdGVUaW1lIEB1cGRhdGVkQXQKICB1cmwgICAgICAgU3RyaW5nCiAgc2hvcnRVcmwgIFN0cmluZwogIHVzZXIgICAgICBVc2VyPyAgICBAcmVsYXRpb24oZmllbGRzOiBbdXNlcklkXSwgcmVmZXJlbmNlczogW2lkXSkKICB1c2VySWQgICAgU3RyaW5nPwp9Cgptb2RlbCBVc2VyIHsKICBpZCAgICAgICAgU3RyaW5nICAgQGlkIEBkZWZhdWx0KHV1aWQoKSkKICBjcmVhdGVkQXQgRGF0ZVRpbWUgQGRlZmF1bHQobm93KCkpCiAgdXBkYXRlZEF0IERhdGVUaW1lIEB1cGRhdGVkQXQKICBuYW1lICAgICAgU3RyaW5nPwogIGVtYWlsICAgICBTdHJpbmcgICBAdW5pcXVlCiAgbGlua3MgICAgIExpbmtbXQogIGRhdGUgICAgICBEYXRlVGltZT8KICBkZWNpbWFsICAgRGVjaW1hbD8KfQo=";
+        let y = r#"{"modelName":"User","action":"createOne","query":{"arguments":{"data":{"email":"user.1689714548354@prisma.io"}},"selection":{"$composites":true,"$scalars":true}}}"#;
+        start(x);
+        to_sql(y).await;
     }
 }

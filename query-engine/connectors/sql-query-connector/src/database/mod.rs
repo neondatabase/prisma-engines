@@ -1,4 +1,4 @@
-mod connection;
+pub mod connection;
 mod postgresql;
 mod transaction;
 

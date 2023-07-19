@@ -41,7 +41,6 @@ impl<'conn, 'schema> QueryPipeline<'conn, 'schema> {
 
         trace!("{}", self.interpreter.log_output());
         use crate::response_ir::Item;
-        Ok(ResponseData::new("empty".to_string(), Item::Value(PrismaValue::Null)))
-        // serializer.serialize(result?, query_schema) // TODO: serialize
+        serializer.serialize(result?, query_schema)
     }
 }

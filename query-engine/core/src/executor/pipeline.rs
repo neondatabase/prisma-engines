@@ -1,4 +1,5 @@
 use crate::{Env, Expressionista, IrSerializer, QueryGraph, QueryInterpreter, ResponseData};
+use prisma_models::PrismaValue;
 use schema::QuerySchema;
 use tracing::Instrument;
 
@@ -39,6 +40,8 @@ impl<'conn, 'schema> QueryPipeline<'conn, 'schema> {
             .await;
 
         trace!("{}", self.interpreter.log_output());
-        serializer.serialize(result?, query_schema)
+        use crate::response_ir::Item;
+        Ok(ResponseData::new("empty".to_string(), Item::Value(PrismaValue::Null)))
+        // serializer.serialize(result?, query_schema) // TODO: serialize
     }
 }

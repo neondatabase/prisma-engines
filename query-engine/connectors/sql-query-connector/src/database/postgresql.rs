@@ -29,20 +29,22 @@ use quaint::prelude::Query;
 use quaint::prelude::ResultSet;
 use quaint::visitor::Visitor;
 
-use tracing::info;
+macro_rules! console_log {
+    ($($t:tt)*) => (crate::log(&format_args!($($t)*).to_string()))
+}
 
 #[async_trait::async_trait]
 impl Queryable for ConsoleQueryable {
     /// Execute the given query.
     async fn query(&self, q: Query<'_>) -> quaint::Result<ResultSet> {
         let (sql, params) = quaint::visitor::Postgres::build(q)?;
-        info!("{}", sql);
+        console_log!("{}", sql);
         Ok(ResultSet::new(vec![], vec![]))
     }
 
     /// Execute a query given as SQL, interpolating the given parameters.
     async fn query_raw(&self, sql: &str, params: &[Value<'_>]) -> quaint::Result<ResultSet> {
-        info!("{}", sql);
+        console_log!("{}", sql);
         Ok(ResultSet::new(vec![], vec![]))
     }
 
@@ -53,21 +55,21 @@ impl Queryable for ConsoleQueryable {
     ///
     /// NOTE: This method will eventually be removed & merged into Queryable::query_raw().
     async fn query_raw_typed(&self, sql: &str, params: &[Value<'_>]) -> quaint::Result<ResultSet> {
-        info!("{}", sql);
+        console_log!("{}", sql);
         Ok(ResultSet::new(vec![], vec![]))
     }
 
     /// Execute the given query, returning the number of affected rows.
     async fn execute(&self, q: Query<'_>) -> quaint::Result<u64> {
         let (sql, params) = quaint::visitor::Postgres::build(q)?;
-        info!("{}", sql);
+        console_log!("{}", sql);
         Ok(0)
     }
 
     /// Execute a query given as SQL, interpolating the given parameters and
     /// returning the number of affected rows.
     async fn execute_raw(&self, sql: &str, params: &[Value<'_>]) -> quaint::Result<u64> {
-        info!("{}", sql);
+        console_log!("{}", sql);
         Ok(0)
     }
 
@@ -79,14 +81,14 @@ impl Queryable for ConsoleQueryable {
     ///
     /// NOTE: This method will eventually be removed & merged into Queryable::query_raw().
     async fn execute_raw_typed(&self, sql: &str, params: &[Value<'_>]) -> quaint::Result<u64> {
-        info!("{}", sql);
+        console_log!("{}", sql);
         Ok(0)
     }
 
     /// Run a command in the database, for queries that can't be run using
     /// prepared statements.
     async fn raw_cmd(&self, cmd: &str) -> quaint::Result<()> {
-        info!("{}", cmd);
+        console_log!("{}", cmd);
         Ok(())
     }
 

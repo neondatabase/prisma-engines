@@ -28,3 +28,14 @@ pub use database::js::register_driver;
 pub use error::SqlError;
 
 type Result<T> = std::result::Result<T, error::SqlError>;
+
+use wasm_bindgen::prelude::*;
+
+// lifted from the `console_log` example
+#[wasm_bindgen]
+extern "C" {
+    #[wasm_bindgen(js_namespace = console)]
+    pub fn log(a: &str);
+}
+
+

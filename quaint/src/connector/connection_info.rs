@@ -102,7 +102,7 @@ impl ConnectionInfo {
     pub fn dbname(&self) -> Option<&str> {
         match self {
             #[cfg(feature = "postgresql")]
-            ConnectionInfo::Postgres(url) => todo!(),
+            ConnectionInfo::Postgres(url) => Some("neondb"),  // TODO: use the schema from URL, need user supply
             #[cfg(feature = "mysql")]
             ConnectionInfo::Mysql(url) => Some(url.dbname()),
             #[cfg(feature = "mssql")]
@@ -120,7 +120,7 @@ impl ConnectionInfo {
     pub fn schema_name(&self) -> &str {
         match self {
             #[cfg(feature = "postgresql")]
-            ConnectionInfo::Postgres(url) => "no_schema",
+            ConnectionInfo::Postgres(url) => "public", // TODO: use the schema from URL, need user supply
             #[cfg(feature = "mysql")]
             ConnectionInfo::Mysql(url) => url.dbname(),
             #[cfg(feature = "mssql")]

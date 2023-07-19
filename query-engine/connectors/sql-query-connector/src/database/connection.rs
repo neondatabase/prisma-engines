@@ -14,7 +14,7 @@ use quaint::{
 };
 use std::{collections::HashMap, str::FromStr};
 
-pub(crate) struct SqlConnection<C> {
+pub struct SqlConnection<C> {
     inner: C,
     connection_info: ConnectionInfo,
     features: psl::PreviewFeatures,

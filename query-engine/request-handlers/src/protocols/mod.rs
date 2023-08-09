@@ -42,7 +42,7 @@ impl RequestBody {
         }
     }
 
-    #[cfg(target_arch = "wasm32")]
+    #[cfg(feature = "js-connectors")]
     pub fn try_from_js_value(val: wasm_bindgen::prelude::JsValue) -> Result<RequestBody, serde_json::Error> {
         Ok(serde_wasm_bindgen::from_value::<json::JsonBody>(val).unwrap().into())
     }

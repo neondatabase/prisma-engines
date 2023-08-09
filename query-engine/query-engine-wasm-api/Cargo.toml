@@ -43,6 +43,9 @@ wasm-bindgen-futures = "0.4"
 serde-wasm-bindgen = "0.5"
 serde_repr = "0.1"
 js-sys = "0.3"
+wee_alloc = "0.4.5"
+console_log = { version = "0.2", features = ["color"] }
+log = "0.4"
 
 [profile.release]
 # Default release settings for all targets
@@ -51,4 +54,6 @@ js-sys = "0.3"
 # Custom release settings for wasm32-unknown-unknown
 opt-level = "z"
 lto = "fat"
-panic = "abort"
+
+[package.metadata.wasm-pack.profile.release]
+# wasm-opt = ['-Oz', '-g']

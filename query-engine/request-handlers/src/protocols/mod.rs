@@ -42,6 +42,11 @@ impl RequestBody {
         }
     }
 
+    #[cfg(target_arch = "wasm32")]
+    pub fn try_from_js_value(val: wasm_bindgen::prelude::JsValue) -> Result<RequestBody, serde_json::Error> {
+        Ok(serde_wasm_bindgen::from_value::<json::JsonBody>(val).unwrap().into())
+    }
+
     pub fn try_from_slice(val: &[u8], engine_protocol: EngineProtocol) -> Result<RequestBody, serde_json::Error> {
         match engine_protocol {
             EngineProtocol::Graphql => {

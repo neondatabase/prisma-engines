@@ -8,7 +8,7 @@ type Flavor = Connector['flavour']
 export async function smokeTest(db: Connector & Closeable) {
   // wait for the database pool to be initialized
   await setImmediate(0) // TODO: setImmediate is not available in Vercel Edge Functions
-  
+
   const engine = await initQueryEngine(db)
 
   console.log('[nodejs] connecting...')
@@ -47,14 +47,14 @@ export async function smokeTest(db: Connector & Closeable) {
 }
 
 class SmokeTest {
-  constructor(private readonly engine: QueryEngineInstance, readonly flavour: Connector['flavour']) {}
+  constructor(private readonly engine: QueryEngineInstance, readonly flavour: Connector['flavour']) { }
 
   async testFindManyTypeTest() {
     await this.testFindManyTypeTestPostgres()
   }
 
   private async testFindManyTypeTestPostgres() {
-    const resultSet = await this.engine.query(`
+    const resultSet = await this.engine.query(
       {
         "action": "findMany",
         "modelName": "type_test",
@@ -77,16 +77,16 @@ class SmokeTest {
             "json_column": true,
             "enum_column": true
           }
-        } 
+        }
       }
-    `, 'trace', undefined)
-    console.log('[nodejs] findMany resultSet', JSON.stringify(JSON.parse(resultSet), null, 2))
-  
+      , 'trace', undefined)
+    console.log('[nodejs] findMany resultSet', JSON.stringify(resultSet, null, 2))
+
     return resultSet
   }
 
   async createAutoIncrement() {
-    await this.engine.query(`
+    await this.engine.query(
       {
         "modelName": "Author",
         "action": "deleteMany",
@@ -99,9 +99,9 @@ class SmokeTest {
           }
         }
       }
-    `, 'trace', undefined)
+      , 'trace', undefined)
 
-    const author = await this.engine.query(`
+    const author = await this.engine.query(
       {
         "modelName": "Author",
         "action": "createOne",
@@ -120,13 +120,13 @@ class SmokeTest {
           }
         }
       }
-    `, 'trace', undefined)
-    console.log('[nodejs] author', JSON.stringify(JSON.parse(author), null, 2))
+      , 'trace', undefined)
+    console.log('[nodejs] author', JSON.stringify(author, null, 2))
   }
 
   async testCreateAndDeleteChildParent() {
     /* Delete all child and parent records */
-  
+
     // Queries: [
     //   'SELECT `cf-users`.`Child`.`id` FROM `cf-users`.`Child` WHERE 1=1',
     //   'SELECT `cf-users`.`Child`.`id` FROM `cf-users`.`Child` WHERE 1=1',
@@ -146,7 +146,7 @@ class SmokeTest {
         }
       }
     `, 'trace', undefined)
-  
+
     // Queries: [
     //   'SELECT `cf-users`.`Parent`.`id` FROM `cf-users`.`Parent` WHERE 1=1',
     //   'SELECT `cf-users`.`Parent`.`id` FROM `cf-users`.`Parent` WHERE 1=1',
@@ -166,9 +166,9 @@ class SmokeTest {
         }
       }
     `, 'trace', undefined)
-  
+
     /* Create a parent with some new children, within a transaction */
-  
+
     // Queries: [
     //   'INSERT INTO `cf-users`.`Parent` (`p`,`p_1`,`p_2`,`id`) VALUES (?,?,?,?)',
     //   'INSERT INTO `cf-users`.`Child` (`c`,`c_1`,`c_2`,`parentId`,`id`) VALUES (?,?,?,?,?)',
@@ -206,9 +206,9 @@ class SmokeTest {
         }
       }
     `, 'trace', undefined)
-  
+
     /* Delete the parent */
-  
+
     // Queries: [
     //   'SELECT `cf-users`.`Parent`.`id` FROM `cf-users`.`Parent` WHERE `cf-users`.`Parent`.`p` = ?',
     //   'SELECT `cf-users`.`Child`.`id`, `cf-users`.`Child`.`parentId` FROM `cf-users`.`Child` WHERE (1=1 AND `cf-users`.`Child`.`parentId` IN (?))',
@@ -232,6 +232,6 @@ class SmokeTest {
         }
       }
     `, 'trace', undefined)
-    console.log('[nodejs] resultDeleteMany', JSON.stringify(JSON.parse(resultDeleteMany), null, 2))
+    console.log('[nodejs] resultDeleteMany', JSON.stringify(resultDeleteMany, null, 2))
   }
 }

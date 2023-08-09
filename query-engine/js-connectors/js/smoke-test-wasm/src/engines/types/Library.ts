@@ -8,7 +8,7 @@ export type QueryEngineInstance = {
    * @param requestStr JSON.stringified `QueryEngineRequest | QueryEngineBatchRequest`
    * @param headersStr JSON.stringified `QueryEngineRequestHeaders`
    */
-  query(requestStr: string, headersStr: string, transactionId?: string): Promise<string>
+  query(request: any, headersStr: string, transactionId?: string): Promise<any>
   sdlSchema(): Promise<string>
   dmmf(traceparent: string): Promise<string>
   startTransaction(options: string, traceHeaders: string): Promise<string>

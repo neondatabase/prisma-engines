@@ -234,7 +234,8 @@ impl QueryEngine {
                     connector.get_connection().instrument(conn_span).await?;
 
                     crate::Result::<_>::Ok(executor)
-                }.await;
+                }
+                .await;
 
                 let query_schema = {
                     let enable_raw_queries = true;
@@ -293,15 +294,15 @@ impl QueryEngine {
     /// If connected, sends a query to the core and returns the response.
     pub async fn query(
         &self,
-        body: String,
+        body: JsValue,
         trace: String,
         tx_id: Option<String>,
-    ) -> Result<String, wasm_bindgen::JsError> {
+    ) -> Result<JsValue, wasm_bindgen::JsError> {
         async_panic_to_js_error(async {
             let inner = self.inner.read().await;
             let engine = inner.as_engine()?;
 
-            let query = RequestBody::try_from_str(&body, engine.engine_protocol())?;
+            let query = RequestBody::try_from_js_value(body)?;
 
             async move {
                 let span = if tx_id.is_none() {
@@ -316,7 +317,7 @@ impl QueryEngine {
                     .instrument(span)
                     .await;
 
-                Ok(serde_json::to_string(&response)?)
+                Ok(response.serialize(&serde_wasm_bindgen::Serializer::json_compatible())?)
             }
             .await
         })

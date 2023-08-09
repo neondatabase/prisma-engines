@@ -26,6 +26,10 @@ once_cell = "1.15"
 mongodb-query-connector = { path = "../connectors/mongodb-query-connector", optional = true }
 sql-query-connector = { path = "../connectors/sql-query-connector", default-features = false }
 
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen = "=0.2.84"
+serde-wasm-bindgen = "0.5"
+
 [dev-dependencies]
 insta = "1.7.1"
 schema = { path = "../schema" }

@@ -49,6 +49,7 @@ pub(crate) fn validate(
         diagnostics: &mut output.diagnostics,
     };
 
+    #[cfg(not(target_arch = "wasm32"))]
     validations::validate(&mut context);
 
     output
